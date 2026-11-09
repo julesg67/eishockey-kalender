@@ -19,6 +19,29 @@ TEAMS = {
     "Royal Bavarians": "Royal_Bavarians.ics",
     "Tigers Roßhaupten": "Tigers_Rosshaupten.ics",
 }
+CABIN_NAMES = {
+    "23090": "ARENA - K1",
+    "23091": "ARENA - K2",
+    "23092": "ARENA - K3",
+    "23093": "ARENA - K4",
+    "23094": "ARENA - A",
+    "23095": "ARENA - B",
+    "23096": "ARENA - Links",
+    "23097": "ARENA - Rechts",
+    "23176": "ARENA - EK 1",
+    "23177": "ARENA - EK 2",
+    "58126": "ARENA - SR",
+
+    "23109": "H1 - Kabine 1",
+    "23110": "H1 - Kabine 2",
+    "23111": "H1 - Kabine 3",
+    "23112": "H1 - Kabine 4",
+    "23113": "H1 - Gymnastikumkleide",
+    "23755": "H1 - Allgemeiner Lauf",
+    "60719": "H1 - Mehrzweckkabine",
+    "83262": "H1 - Schiedsrichterkabine",
+    "93286": "DEB Profikabine",
+}
 
 TZ = ZoneInfo("Europe/Berlin")
 
