@@ -1,5 +1,4 @@
 name: Update Eishockey Calendars
-
 on:
   schedule:
     - cron: "0 */6 * * *"
