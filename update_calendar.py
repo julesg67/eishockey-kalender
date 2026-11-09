@@ -228,12 +228,11 @@ for team, filename in TEAMS.items():
         cabin_id = event_data.get("cabin_resource")
 
         if cabin_id:
-            description = (
-                f"Kabinen-Ressourcen-ID: {cabin_id}"
-            )
+            description = f"Kabine: {CABIN_NAMES.get(cabin_id, 'Unbekannte Kabine')}"
         else:
             description = "Kabine noch nicht zugeteilt"
 
+        
         calendar_event.add("description", description)
 
         uid = (
