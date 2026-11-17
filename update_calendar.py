@@ -18,6 +18,7 @@ URL = "https://booking.locaboo.com/calendar/load_events"
 TEAMS = {
     "Royal Bavarians": "Royal_Bavarians.ics",
     "Tigers Roßhaupten": "Tigers_Rosshaupten.ics",
+    "ZSKA Rieden": "ZSKA_Rieden.ics",
 }
 CABIN_NAMES = {
     "23090": "ARENA - K1",
