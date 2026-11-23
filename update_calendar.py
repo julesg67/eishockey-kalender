@@ -178,20 +178,60 @@ ice_events = [
 # Kabinen zuordnen
 # --------------------------------------------------
 
+
+# --------------------------------------------------
+# Kabinen zuordnen
+# --------------------------------------------------
+
 for event in ice_events:
 
-    matching_cabins = [
-        cabin for cabin in cabin_events
-        if cabin.get("customer_name") == event.get("customer_name")
-        and cabin.get("start") == event.get("start")
-        and cabin.get("end") == event.get("end")
-        and cabin.get("status") == "live"
-    ]
+    ice_start = to_datetime(event["start"])
+    ice_end = to_datetime(event["end"])
 
-    event["cabin_resource"] = (
-        matching_cabins[0].get("resource")
-        if matching_cabins else None
-    )
+    matching_cabins = []
+
+    for cabin in cabin_events:
+
+        # Gleiche Mannschaft und gültiger Status
+        if cabin.get("customer_name") != event.get("customer_name"):
+            continue
+
+        if cabin.get("status") != "live":
+            continue
+
+        cabin_start = to_datetime(cabin["start"])
+        cabin_end = to_datetime(cabin["end"])
+
+        # Gleiches Datum
+        if cabin_start.date() != ice_start.date():
+            continue
+
+        # Zeitliche Überschneidung berechnen
+        overlap_start = max(ice_start, cabin_start)
+        overlap_end = min(ice_end, cabin_end)
+
+        overlap = (overlap_end - overlap_start).total_seconds()
+
+        if overlap > 0:
+            matching_cabins.append(
+                (overlap, cabin)
+            )
+
+    # Kabine mit der größten zeitlichen Überschneidung auswählen
+    if matching_cabins:
+
+        matching_cabins.sort(
+            key=lambda item: item[0],
+            reverse=True
+        )
+
+        event["cabin_resource"] = str(
+            matching_cabins[0][1].get("resource")
+        )
+
+    else:
+        event["cabin_resource"] = None
+
 
 
 # --------------------------------------------------
